@@ -70,3 +70,9 @@ def delete_todo(todo_id: int):
         raise HTTPException(status_code=404, detail="Todo not found")
 
     return {"message": "Todo deleted"}
+
+@app.get("/ai/today_todos")
+def get_today_todos():
+    from services import ai_agent
+    today_todos = ai_agent.summary()
+    return {"today_todos": today_todos}
